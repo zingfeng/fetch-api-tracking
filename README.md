@@ -10,7 +10,7 @@ Tracking fetch-api's request and response
   ```html
   <html>
       <head>
-          <script src="https://cdn.jsdelivr.net/gh/zingfeng/fetch-api-tracking/sun_tracking.js"></script>
+          <script src="https://cdn.jsdelivr.net/gh/zingfeng/fetch-api-tracking/sun_tracking.min.js"></script>
       </head>
       <body>
           
@@ -22,7 +22,7 @@ Tracking fetch-api's request and response
 
   ```javascript
     var script = document.createElement( 'script' );
-    script.setAttribute( 'src', 'https://cdn.jsdelivr.net/gh/zingfeng/fetch-api-tracking/sun_tracking.js' );
+    script.setAttribute( 'src', 'https://cdn.jsdelivr.net/gh/zingfeng/fetch-api-tracking/sun_tracking.min.js' );
     document.head.appendChild( script );
   ```
   
@@ -30,7 +30,7 @@ Tracking fetch-api's request and response
 
     ```js
     // ...
-    await page.addScriptTag({url: 'https://cdn.jsdelivr.net/gh/zingfeng/fetch-api-tracking/sun_tracking.js'})
+    await page.addScriptTag({url: 'https://cdn.jsdelivr.net/gh/zingfeng/fetch-api-tracking/sun_tracking.min.js'})
     // ...
     ```
 
@@ -77,13 +77,13 @@ Tracking fetch-api's request and response
   //    fetchN
   // ]
     
-  // fetchN = {
+  // fetchM = {
   //      url: url, 
   //      domain: domain, 
   //      body: 'body text from response', 
   //      time: 'timestamp get response', 
   //      arguments: arguments Object, 
-  //      response: response Obj, 
+  //      response: response Object, 
   // }
   ```
     - Function
@@ -104,7 +104,7 @@ Tracking fetch-api's request and response
   sun_tracking.filterResponseByRegex('/ticktack/g')
   
   // Group result by URL
-  sun_tracking.getByDomain()
+  sun_tracking.groupByUrl()
   
   // Group result by Domain
   sun_tracking.groupByDomain()
