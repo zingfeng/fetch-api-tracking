@@ -27,12 +27,38 @@ Tracking fetch-api's request and response
   ```
   
 - Puppeteer
-
-    ```js
-    // ...
-    await page.addScriptTag({url: 'https://cdn.jsdelivr.net/gh/zingfeng/fetch-api-tracking/sun_tracking.min.js'})
-    // ...
-    ```
+    Download file sun_tracking.js 
+    
+    ```javascript
+    const puppeteer = require('puppeteer');
+    const fs = require('fs');
+    
+    (async () => {
+    
+        const browser = await puppeteer.launch({
+            args: ['--disable-dev-shm-usage'],
+        });
+        const page = await browser.newPage();
+    
+        // Preload Script - change './sun_tracking.js' to your path
+        const preloadFile = fs.readFileSync('./sun_tracking.js', 'utf8');
+        await page.evaluateOnNewDocument(preloadFile);
+    
+        await page.goto('https://login.newrelic.com/login');
+    
+        // Sleep
+        await page.waitForTimeout(10000);
+    
+        // Get result
+        var result = await page.evaluate(function () {
+            return sun_tracking.getAll()
+        });
+        console.log(result);
+    
+        await browser.close();
+    
+    })();
+    ```  
 
 
 ## Usage
